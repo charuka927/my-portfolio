@@ -119,6 +119,146 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      {/* Education Section */}
+      <section id="education" className="mb-24">
+        <div className="text-center mb-10">
+          <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-3">Education</p>
+          <h2 className="text-4xl font-bold">Academic Journey</h2>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {[
+            {
+              institution: "SLIIT",
+              degree: "BSc (Hons) in Information Technology Specialization",
+              duration: "2023 May - Present",
+              description: "Studying software engineering, UI/UX, web technologies, and modern application development with a strong focus on user-centered design.",
+            },
+            {
+              institution: "IMBS Green Campus",
+              degree: "Diploma in Information Technology",
+              duration: "2026 April - Present",
+              description: "Completed studies in Physical Science stream with a strong academic foundation in problem-solving and analytical thinking.",
+            },
+            {
+              institution: "Aquinas College of Higher Studies",
+              degree: "Certificate in Information & Communication Technology Technician",
+              duration: "2025 Jan - 2025 Aug",
+              description: "Built a strong base in academics, leadership, and extracurricular participation during secondary education.",
+            },
+            {
+              institution: "Cisco Network Academy",
+              degree: "Introduction to Cybersecurity",
+              duration: "2026",
+              description: "Built a strong base in academics, leadership, and extracurricular participation during secondary education.",
+            },
+            {
+              institution: "Cisco Network Academy",
+              degree: "Getting Started with Cisco Packet Tracer",
+              duration: "2026",
+              description: "Built a strong base in academics, leadership, and extracurricular participation during secondary education.",
+            },
+            {
+              institution: "Sri Saranankara National College, Bingiriya.",
+              degree: "G.C.E. Advanced Level",
+              duration: "2021(2022)",
+              description: "G.C.E. Advanced Level in Art stream",
+            },
+            {
+              institution: "Sri Saranankara National College, Bingiriya.",
+              degree: "G.C.E. Ordinary Level",
+              duration: "2018",
+              description: "G.C.E. Ordinary Level",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ y: -6, scale: 1.01, borderColor: "#22d3ee" }}
+              className="rounded-2xl border border-gray-800 bg-gray-900/90 p-7 shadow-lg shadow-black/20 transition-all"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 16.5v3a2 2 0 005 0v-3" />
+                </svg>
+              </div>
+              <h3 className="mb-2 text-xl font-semibold text-cyan-400">{item.institution}</h3>
+              <p className="mb-3 text-sm font-medium text-gray-300">{item.degree}</p>
+              <p className="mb-4 text-sm text-cyan-300">{item.duration}</p>
+              <p className="text-sm leading-relaxed text-gray-400">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="mb-24">
+        <div className="text-center mb-10">
+          <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-3">Skills</p>
+          <h2 className="text-4xl font-bold">What I Work With</h2>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-3">
+          {[
+            {
+              title: "Frontend",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 3H5a2 2 0 00-2 2v3m0 10v3a2 2 0 002 2h3m8-18h3a2 2 0 012 2v3m0 10v3a2 2 0 01-2 2h-3" />
+                  <rect x="8" y="8" width="8" height="8" rx="2" />
+                </svg>
+              ),
+              skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML/CSS"],
+            },
+            {
+              title: "Backend",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 8h8M8 12h5M8 16h3" />
+                </svg>
+              ),
+              skills: ["Node.js", "Express", "REST APIs", "MongoDB", "Firebase"],
+            },
+            {
+              title: "Tools",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 4H6a2 2 0 00-2 2v4m10-6h4a2 2 0 012 2v4M4 14v4a2 2 0 002 2h4m10-6v4a2 2 0 01-2 2h-4" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              ),
+              skills: ["Git", "GitHub", "Figma", "VS Code", "Postman"],
+            },
+          ].map((category, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ y: -6, scale: 1.01, borderColor: "#22d3ee", boxShadow: "0 0 0 1px rgba(34,211,238,0.15), 0 0 24px rgba(34,211,238,0.15)" }}
+              className="rounded-2xl border border-gray-800 bg-gray-900/90 p-6 shadow-lg shadow-black/20 transition-all"
+            >
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400">
+                  {category.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-cyan-400">{category.title}</h3>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-2 text-sm text-gray-200 transition-all hover:border-cyan-400 hover:bg-cyan-500/20"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Projects Section */}
       <section id="projects">
         <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
