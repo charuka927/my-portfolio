@@ -11,7 +11,9 @@ export default function Home() {
   const navBorder = useTransform(scrollY, [0, 120], ["rgba(255,255,255,0.1)", "rgba(255,255,255,0.25)"]);
 
   return (
-    <main className="min-h-screen bg-black text-white px-8 pb-8 pt-24 md:px-20 md:pt-28">
+    <main className="relative min-h-screen overflow-hidden bg-[url('/bck.jpg')] bg-cover bg-center bg-fixed text-white">
+      <div className="absolute inset-0 bg-black/80" />
+      <div className="relative z-10 px-8 pb-8 pt-24 md:px-20 md:pt-28">
       {/* Navbar */}
       <motion.nav
         className="fixed top-0 left-0 w-full z-[100] flex items-center justify-between px-4 py-4 md:px-8 backdrop-blur-md border-b"
@@ -139,6 +141,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      </div>
     </main>
   );
 }
