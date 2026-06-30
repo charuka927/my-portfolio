@@ -1,16 +1,25 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { scrollY } = useScroll();
+  const navBackground = useTransform(scrollY, [0, 120], ["rgba(0,0,0,0.5)", "rgba(0,0,0,0.8)"]);
+  const navBorder = useTransform(scrollY, [0, 120], ["rgba(255,255,255,0.1)", "rgba(255,255,255,0.25)"]);
 
   return (
-    <main className="min-h-screen bg-black text-white p-8 md:p-20">
+    <main className="min-h-screen bg-black text-white px-8 pb-8 pt-24 md:px-20 md:pt-28">
       {/* Navbar */}
-      <nav className="flex items-center justify-between mb-20 px-4 md:px-8 relative">
+      <motion.nav
+        className="fixed top-0 left-0 w-full z-[100] flex items-center justify-between px-4 py-4 md:px-8 backdrop-blur-md border-b"
+        style={{
+          backgroundColor: navBackground,
+          borderColor: navBorder,
+        }}
+      >
         <div className="text-2xl font-bold tracking-tighter text-purple-400">Portfolio.</div>
 
         {/* Desktop Menu */}
@@ -39,7 +48,7 @@ export default function Home() {
               initial={{ opacity: 0, y: -20 }} 
               animate={{ opacity: 1, y: 0 }} 
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-20 left-0 w-full bg-gray-900 p-8 flex flex-col items-center space-y-6 md:hidden rounded-lg z-40 border border-cyan-500/20"
+              className="absolute top-20 left-0 w-full bg-gray-900/95 p-8 flex flex-col items-center space-y-6 md:hidden rounded-lg z-40 border border-cyan-500/20"
             >
               {['Home', 'About', 'Education', 'Skills', 'Projects', 'Contact'].map((item) => (
                 <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsOpen(false)} className="text-xl font-medium hover:text-cyan-400">
@@ -49,13 +58,13 @@ export default function Home() {
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
       <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 mb-32">
         <div className="md:w-1/2 space-y-6">
           <h1 className="text-5xl md:text-7xl font-bold">
-            Hi, I'm <span className="text-cyan-400">Charuka Prabhasha Herath</span>
+            Hi, I'm <br></br><span className="text-cyan-400">Charuka Prabhasha Herath</span>
           </h1>
           <h2 className="text-3xl mt-4 text-blue-300">Undergraduate</h2>
           <p className="text-gray-400 text-lg leading-relaxed max-w-lg">
@@ -113,12 +122,14 @@ export default function Home() {
         <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { title: 'CS Air', desc: 'Airline reservation system with search filters.' },
-            { title: 'Hadora', desc: 'Minimal streetwear apparel branding.' },
-            { title: 'Event Invites', desc: 'Interactive event invitation system.' },
-            { title: 'Event Invites', desc: 'Interactive event invitation system.' },
-            { title: 'Event Invites', desc: 'Interactive event invitation system.' },
-            { title: 'Event Invites', desc: 'Interactive event invitation system.' },
+            { title: 'Air Ticket Reservation System', desc: 'Airline reservation system with search filters.' },
+            { title: 'Spare Parts Selling System', desc: 'Spare parts selling platform with inventory management.' },
+            { title: 'Online Grocery Store', desc: 'Online grocery shopping platform with real-time inventory updates.' },
+            { title: 'Financial Tracking Application', desc: 'Application for tracking financial transactions and reports.' },
+            { title: 'Restaurant Mobile Application', desc: 'Mobile application for restaurant ordering and management.' },
+            { title: 'Redesign MD Foods Website', desc: 'Fixed website design and layout.' },
+            { title: 'Student Collaboration & Support System', desc: 'Student Collaboration & Support System.' },
+            { title: 'Library Seat Booking System', desc: 'Library Seat Booking System.' },
           ].map((proj, index) => (
             <div key={index} className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-cyan-500 transition-all">
               <h3 className="text-2xl font-bold text-cyan-400">{proj.title}</h3>
