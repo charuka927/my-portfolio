@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white p-8 md:p-20">
@@ -18,16 +20,22 @@ export default function Home() {
           </h1>
           <h2 className="text-3xl mt-4 text-blue-300">Undergraduate</h2>
           <p className="mt-6 text-gray-400 text-lg leading-relaxed max-w-lg">
-           I am an IT undergraduate at SLIIT, driven by a love for UI/UX design and development. I enjoy the process of turning complex requirements into simple, efficient interfaces. My background in both design tools (Figma, Adobe Suite) and development (React, PERN/MERN stack) allows me to think critically about how design impacts the final product. I am highly motivated to contribute to team-based projects and gain hands-on experience in the industry.
+            I am an IT undergraduate at SLIIT, driven by a love for UI/UX design and development. I enjoy the process of turning complex requirements into simple, efficient interfaces. My background in both design tools (Figma, Adobe Suite) and development (React, PERN/MERN stack) allows me to think critically about how design impacts the final product. I am highly motivated to contribute to team-based projects and gain hands-on experience in the industry.
           </p>
           <div className="mt-8 flex gap-4">
             <button className="bg-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-all">Hire Me</button>
             <button className="border border-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-900 transition-all">MY CV</button>
           </div>
         </div>
-        {/* Placeholder for Profile Art */}
-        <div className="mt-12 md:mt-0 w-64 h-64 md:w-80 md:h-80 bg-gray-900 rounded-full flex items-center justify-center border-4 border-purple-500">
-          <span className="text-gray-500">Profile Image</span>
+
+        {/* Profile Image */}
+        <div className="mt-12 md:mt-0 w-64 h-64 md:w-80 md:h-80 relative overflow-hidden rounded-full border-4 border-purple-500">
+          <Image
+            src="/photo.png" 
+            alt="Charuka Prabhasha Herath"
+            fill
+            className="object-cover"
+          />
         </div>
       </section>
 
