@@ -1,15 +1,59 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-black text-white p-8 md:p-20">
       {/* Navbar */}
-      <nav className="flex justify-end space-x-8 text-lg mb-20">
-        {['Home', 'About', 'Education', 'Skills', 'Portfolio', 'Contact'].map((item) => (
-          <a key={item} href="#" className="hover:text-purple-500 transition-colors">
-            {item}
-          </a>
-        ))}
+      <nav className="flex items-center justify-between mb-20 px-4 md:px-8 relative">
+        <div className="text-2xl font-bold tracking-tighter text-purple-400">Portfolio.</div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-10 text-lg">
+          {['Home', 'About', 'Education', 'Skills', 'Projects', 'Contact'].map((item) => (
+            <motion.a 
+              key={item} 
+              href={`#${item.toLowerCase()}`} 
+              className="relative px-2 py-1 cursor-pointer font-medium"
+              whileHover={{ color: "#a855f7" }}
+            >
+              {item}
+              <motion.div 
+                className="absolute -bottom-1 left-0 w-full h-0.5 bg-purple-500 rounded-full" 
+                initial={{ scaleX: 0 }} 
+                whileHover={{ scaleX: 1 }} 
+                transition={{ duration: 0.3 }}
+              />
+            </motion.a>
+          ))}
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <button className="md:hidden text-2xl z-50" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? "✕" : "☰"}
+        </button>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-20 left-0 w-full bg-gray-900 p-8 flex flex-col items-center space-y-6 md:hidden rounded-lg z-40"
+            >
+              {['Home', 'About', 'Education', 'Skills', 'Projects', 'Contact'].map((item) => (
+                <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsOpen(false)} className="text-xl">
+                  {item}
+                </a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
@@ -40,7 +84,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section>
+      <section id="projects">
         <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
