@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <main className="min-h-screen bg-black text-white p-8 md:p-20">
@@ -68,7 +69,12 @@ export default function Home() {
           </p>
           <div className="mt-8 flex gap-4">
             <button className="bg-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-all">Hire Me</button>
-            <button className="border border-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-900 transition-all">MY CV</button>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="border border-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-900 transition-all"
+            >
+              MY CV
+            </button>
           </div>
         </div>
 
@@ -82,6 +88,27 @@ export default function Home() {
           />
         </div>
       </section>
+
+      {/* CV Download Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/80 p-4">
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }} 
+              animate={{ scale: 1, opacity: 1 }} 
+              exit={{ scale: 0.9, opacity: 0 }} 
+              className="bg-gray-900 p-8 rounded-2xl border border-purple-500 max-w-sm w-full"
+            >
+              <h3 className="text-xl font-bold mb-6 text-center">Select Download Format</h3>
+              <div className="flex flex-col gap-4">
+                <a href="/cv.pdf" download="Charuka_CV.pdf" className="bg-purple-600 p-3 text-center rounded-lg hover:bg-purple-700 transition-all">Download as PDF</a>
+                <a href="/cv.jpg" download="Charuka_CV.jpg" className="bg-gray-700 p-3 text-center rounded-lg hover:bg-gray-600 transition-all">Download as JPG</a>
+                <button onClick={() => setIsModalOpen(false)} className="text-gray-400 mt-2 hover:underline">Cancel</button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Projects Section */}
       <section id="projects">
